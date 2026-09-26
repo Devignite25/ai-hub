@@ -3,7 +3,7 @@ import type { Article, StoryCluster, AiModel, ResearchPaper, Repo, ProviderModel
 import { timeAgo, formatNumber, domainOf, TASK_LABELS } from "@/lib/format";
 import { categoryLabel } from "./layout";
 
-/** Marks outbound links so users know they're leaving AI Hub. */
+/** Marks outbound links so users know they're leaving The Wider Lens. */
 export function ExternalMark() {
   return (
     <span className="ml-1 inline-block text-zinc-400" aria-label="(external link)" title="Opens the original source">
@@ -266,7 +266,7 @@ export function EmptyState({ message }: { message: string }) {
 export function ExternalNote() {
   return (
     <p className="text-xs text-zinc-500 dark:text-zinc-500">
-      Links marked ↗ open the original source in a new tab. AI Hub shows headlines and excerpts only.
+      Links marked ↗ open the original source in a new tab. The Wider Lens shows headlines and excerpts only.
     </p>
   );
 }

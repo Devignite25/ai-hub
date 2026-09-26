@@ -3,7 +3,7 @@ import { CATEGORIES } from "@/lib/types";
 import { COMPANIES } from "@/lib/companies";
 import { LEARN_TOPICS } from "@/lib/learn";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://hackzgaming.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thewiderlens.info";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

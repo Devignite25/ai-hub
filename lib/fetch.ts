@@ -10,7 +10,7 @@ export interface FetchOptions {
 
 const DEFAULT_HEADERS: Record<string, string> = {
   // Identify ourselves politely; some feeds block generic user agents.
-  "User-Agent": "AIHub/1.0 (AI news aggregator; +https://hackzgaming.com)",
+  "User-Agent": "TheWiderLens/1.0 (AI news aggregator; +https://thewiderlens.info)",
   Accept: "application/rss+xml, application/atom+xml, application/xml, text/xml, */*",
 };
 

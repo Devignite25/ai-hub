@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 const AFFILIATE_URL = "https://try.elevenlabs.io/0108u1ziky63";
-const STORAGE_KEY = "aihub-elevenlabs-popup-dismissed";
+const STORAGE_KEY = "thewiderlens-elevenlabs-popup-dismissed";
 const SUPPRESS_DAYS = 7;
 const SHOW_CHANCE = 0.65; // 65% of sessions see the popup
 const MIN_DELAY_MS = 8000;
@@ -72,12 +72,12 @@ export function AffiliatePopup() {
     document.addEventListener("keydown", onKey);
     // Signal to other popups (e.g. the newsletter one) that we're on screen
     // so they don't stack on top of each other.
-    document.body.dataset.aihubPopup = "open";
+    document.body.dataset.thewiderlensPopup = "open";
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", onKey);
-      delete document.body.dataset.aihubPopup;
+      delete document.body.dataset.thewiderlensPopup;
       document.body.style.overflow = prev;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

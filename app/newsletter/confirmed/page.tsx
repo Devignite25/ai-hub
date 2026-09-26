@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Subscription confirmed",
-  description: "Your AI Hub weekly newsletter subscription is confirmed.",
+  description: "Your The Wider Lens weekly newsletter subscription is confirmed.",
   robots: { index: false, follow: false },
 };
 
@@ -30,7 +30,7 @@ export default function ConfirmedPage({
             href="/"
             className="mt-6 inline-block rounded-xl bg-zinc-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-zinc-700 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200"
           >
-            Back to AI Hub
+            Back to The Wider Lens
           </Link>
         </>
       ) : (

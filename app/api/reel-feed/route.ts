@@ -55,7 +55,7 @@ export async function GET(req: Request) {
   return NextResponse.json(
     {
       generatedAt: new Date().toISOString(),
-      site: "https://hackzgaming.com/latest",
+      site: "https://thewiderlens.info/latest",
       storyCount: qualified.length,
       stories: qualified,
     },

@@ -17,10 +17,10 @@ export function getResend(): Resend {
 }
 
 export const NEWSLETTER_FROM =
-  process.env.NEWSLETTER_FROM ?? "AI Hub <newsletter@news.hackzgaming.com>";
+  process.env.NEWSLETTER_FROM ?? "The Wider Lens <newsletter@news.thewiderlens.info>";
 
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://hackzgaming.com"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://thewiderlens.info"
 ).replace(/\/$/, "");
 
 export const OWNER_EMAIL = process.env.NEWSLETTER_OWNER_EMAIL ?? "";
@@ -135,7 +135,7 @@ export function buildDigest(stories: StoryCluster[]): Digest {
 <html><body style="margin:0;padding:0;background:#f4f4f5;">
 <div style="max-width:600px;margin:0 auto;padding:32px 20px;font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:#18181b;">
   <div style="margin-bottom:24px;">
-    <p style="margin:0 0 4px 0;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#7c3aed;">AI Hub · Weekly Brief</p>
+    <p style="margin:0 0 4px 0;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#7c3aed;">The Wider Lens · Weekly Brief</p>
     <h1 style="margin:0;font-size:26px;line-height:1.25;">The week's biggest AI stories</h1>
     <p style="margin:8px 0 0 0;font-size:14px;color:#52525b;">Week of ${esc(weekLabel)} — every story verified by at least two independent outlets.</p>
   </div>
@@ -157,7 +157,7 @@ export function buildDigest(stories: StoryCluster[]): Digest {
     })
     .join("\n\n---\n\n");
 
-  const text = `AI HUB — WEEKLY BRIEF (week of ${weekLabel})
+  const text = `THE WIDER LENS — WEEKLY BRIEF (week of ${weekLabel})
 
 The week's biggest AI stories. Every story verified by at least two independent outlets.
 
@@ -172,17 +172,17 @@ Unsubscribe: {{{RESEND_UNSUBSCRIBE_URL}}}`;
 
 /** Confirmation email sent for double opt-in. */
 export function buildConfirmEmail(confirmUrl: string): { subject: string; html: string; text: string } {
-  const subject = "Confirm your AI Hub newsletter subscription";
+  const subject = "Confirm your The Wider Lens newsletter subscription";
   const html = `<!doctype html>
 <html><body style="margin:0;padding:0;background:#f4f4f5;">
 <div style="max-width:600px;margin:0 auto;padding:32px 20px;font-family:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;color:#18181b;">
-  <p style="margin:0 0 4px 0;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#7c3aed;">AI Hub · Weekly Brief</p>
+  <p style="margin:0 0 4px 0;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#7c3aed;">The Wider Lens · Weekly Brief</p>
   <h1 style="margin:0 0 12px 0;font-size:24px;">One more step</h1>
-  <p style="margin:0 0 20px 0;font-size:15px;line-height:1.6;color:#52525b;">Click below to confirm your subscription to the AI Hub weekly newsletter — the week's biggest AI stories, every Monday morning.</p>
+  <p style="margin:0 0 20px 0;font-size:15px;line-height:1.6;color:#52525b;">Click below to confirm your subscription to The Wider Lens weekly newsletter — the week's biggest AI stories, every Monday morning.</p>
   <a href="${esc(confirmUrl)}" style="display:inline-block;padding:12px 28px;background:#18181b;color:#ffffff;font-size:15px;font-weight:600;text-decoration:none;border-radius:10px;">Confirm subscription</a>
   <p style="margin:20px 0 0 0;font-size:12px;color:#71717a;">If you didn't request this, just ignore this email.</p>
 </div>
 </body></html>`;
-  const text = `Confirm your AI Hub newsletter subscription:\n\n${confirmUrl}\n\nIf you didn't request this, just ignore this email.`;
+  const text = `Confirm your The Wider Lens newsletter subscription:\n\n${confirmUrl}\n\nIf you didn't request this, just ignore this email.`;
   return { subject, html, text };
 }

@@ -4,8 +4,8 @@ import { Header, Footer } from "@/components/layout";
 import { AffiliatePopup } from "@/components/affiliate-popup";
 import { NewsletterPopup } from "@/components/newsletter-popup";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://hackzgaming.com";
-const SITE_NAME = "AI Hub";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thewiderlens.info";
+const SITE_NAME = "The Wider Lens";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "AI Hub is a real-time hub for AI news, model releases, research papers, open-source projects, tools, and learning resources — aggregated from public sources.",
+    "The Wider Lens is a real-time hub for AI news, model releases, research papers, open-source projects, tools, and learning resources — aggregated from public sources.",
   keywords: ["AI news", "artificial intelligence", "AI models", "machine learning", "AI research", "open source AI"],
   authors: [{ name: SITE_NAME }],
   alternates: { canonical: "/" },
@@ -35,13 +35,13 @@ export const metadata: Metadata = {
 };
 
 // Runs before paint: applies saved theme (or OS preference) to avoid a flash.
-const THEME_INIT_SCRIPT = `(function(){try{var t=localStorage.getItem('aihub-theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');}}catch(e){}})();`;
+const THEME_INIT_SCRIPT = `(function(){try{var t=localStorage.getItem('thewiderlens-theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');}}catch(e){}})();`;
 
 // Minimal progressive enhancement: theme toggle + "View N sources" expanders.
 const UI_SCRIPT = `(function(){
 document.addEventListener('click',function(e){
 var t=e.target.closest('#theme-toggle');
-if(t){var d=document.documentElement.classList.toggle('dark');try{localStorage.setItem('aihub-theme',d?'dark':'light');}catch(x){}return;}
+if(t){var d=document.documentElement.classList.toggle('dark');try{localStorage.setItem('thewiderlens-theme',d?'dark':'light');}catch(x){}return;}
 var x=e.target.closest('[data-toggle]');
 if(x){var el=document.getElementById(x.getAttribute('data-toggle'));if(el){el.classList.toggle('hidden');}return;}
 });

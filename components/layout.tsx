@@ -8,10 +8,12 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-zinc-200 bg-white/90 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/90">
       <div className="mx-auto flex h-14 max-w-7xl items-center gap-4 px-4 sm:px-6">
         <Link href="/" className="flex items-center gap-2 font-bold tracking-tight">
-          <span className="flex h-7 w-7 items-center justify-center rounded-md bg-zinc-900 text-sm font-black text-white dark:bg-white dark:text-zinc-900">
-            AI
-          </span>
-          <span className="text-lg">AI Hub</span>
+          <img
+            src="/logo.jpg"
+            alt="The Wider Lens logo"
+            className="h-8 w-8 rounded-full object-cover"
+          />
+          <span className="text-lg">The Wider Lens</span>
         </Link>
         <nav className="hidden items-center gap-1 text-sm lg:flex" aria-label="Primary">
           <NavLink href="/latest">Latest</NavLink>
@@ -71,7 +73,7 @@ export function Footer() {
       </div>
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:grid-cols-4 sm:px-6">
         <div>
-          <p className="font-bold">AI Hub</p>
+          <p className="font-bold">The Wider Lens</p>
           <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
             Real-time AI news, research, models, and open source — aggregated from public sources.
           </p>
@@ -106,7 +108,7 @@ export function Footer() {
       </div>
       <div className="border-t border-zinc-200 px-4 py-4 dark:border-zinc-800">
         <p className="mx-auto max-w-7xl text-xs text-zinc-500 dark:text-zinc-500">
-          AI Hub aggregates headlines and excerpts and links to original publishers. All content belongs to its
+          The Wider Lens aggregates headlines and excerpts and links to original publishers. All content belongs to its
           respective owners.
         </p>
       </div>

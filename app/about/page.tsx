@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "What AI Hub is and how it works.",
+  description: "What The Wider Lens is and how it works.",
 };
 
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="text-3xl font-black tracking-tight">About AI Hub</h1>
+      <h1 className="text-3xl font-black tracking-tight">About The Wider Lens</h1>
       <div className="mt-4 space-y-4 leading-relaxed text-zinc-700 dark:text-zinc-300">
         <p>
-          AI Hub is a real-time discovery platform for artificial intelligence: AI news, model
+          The Wider Lens is a real-time discovery platform for artificial intelligence: AI news, model
           releases, research papers, open-source projects, tools, and learning resources — in one place.
         </p>
         <p>
@@ -23,7 +23,7 @@ export default function AboutPage() {
           <a href="/sources" className="font-medium underline">sources</a> page for the full source list.
         </p>
         <p>
-          AI Hub shows headlines and short excerpts only, and always links to the original publisher.
+          The Wider Lens shows headlines and short excerpts only, and always links to the original publisher.
           All content belongs to its respective owners.
         </p>
       </div>

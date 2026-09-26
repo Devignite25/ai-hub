@@ -5,7 +5,7 @@ import { ExternalMark } from "@/components/cards";
 
 export const metadata: Metadata = {
   title: "Sources",
-  description: "Every public source AI Hub aggregates from: RSS feeds, arXiv, GitHub, and the Hugging Face Hub.",
+  description: "Every public source The Wider Lens aggregates from: RSS feeds, arXiv, GitHub, and the Hugging Face Hub.",
 };
 
 export default function SourcesPage() {
@@ -14,7 +14,7 @@ export default function SourcesPage() {
     <div className="mx-auto max-w-3xl">
       <h1 className="text-3xl font-black tracking-tight">Sources</h1>
       <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-        AI Hub reads only public sources, server-side. Headlines and short excerpts are shown;
+        The Wider Lens reads only public sources, server-side. Headlines and short excerpts are shown;
         full stories live with their original publishers. Sources can be added or removed in
         <code className="mx-1 rounded bg-zinc-100 px-1 py-0.5 text-xs dark:bg-zinc-800">lib/sources/registry.ts</code>
         without touching the rest of the app.

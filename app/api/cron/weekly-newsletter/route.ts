@@ -29,7 +29,7 @@ async function notifyOwner(subject: string, text: string) {
     await getResend().emails.send({
       from: NEWSLETTER_FROM,
       to: OWNER_EMAIL,
-      subject: `[AI Hub newsletter] ${subject}`,
+      subject: `[The Wider Lens newsletter] ${subject}`,
       text,
     });
   } catch (e) {

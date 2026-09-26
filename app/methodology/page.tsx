@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Methodology",
-  description: "How AI Hub collects, filters, clusters, and ranks AI news — a transparent, deterministic pipeline.",
+  description: "How The Wider Lens collects, filters, clusters, and ranks AI news — a transparent, deterministic pipeline.",
 };
 
 export default function MethodologyPage() {
@@ -10,7 +10,7 @@ export default function MethodologyPage() {
     <div className="mx-auto max-w-3xl">
       <h1 className="text-3xl font-black tracking-tight">Methodology</h1>
       <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-        AI Hub is a deterministic aggregation pipeline. There is no LLM in the loop, no editorial
+        The Wider Lens is a deterministic aggregation pipeline. There is no LLM in the loop, no editorial
         curation, and no personalization. Here is exactly what happens on every refresh.
       </p>
 
@@ -89,7 +89,7 @@ export default function MethodologyPage() {
 
       <Section n="8" title="Limitations">
         <ul className="mt-2 list-disc space-y-1 pl-5">
-          <li>We link to original reporting; AI Hub hosts only headlines and excerpts.</li>
+          <li>We link to original reporting; The Wider Lens hosts only headlines and excerpts.</li>
           <li>Automated clustering can occasionally group loosely related stories — use the source list to verify.</li>
           <li>Model metadata reflects what the Hugging Face API reports; open-weight status is shown only when the license reliably indicates it.</li>
           <li>GitHub “interesting repos” come from curated topic searches, not a global trending calculation.</li>

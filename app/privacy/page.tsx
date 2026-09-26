@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Privacy",
-  description: "AI Hub privacy policy: no accounts, no tracking; the optional weekly newsletter stores only your email with our email provider.",
+  description: "The Wider Lens privacy policy: no accounts, no tracking; the optional weekly newsletter stores only your email with our email provider.",
 };
 
 export default function PrivacyPage() {
@@ -11,7 +11,7 @@ export default function PrivacyPage() {
       <h1 className="text-3xl font-black tracking-tight">Privacy</h1>
       <div className="mt-4 space-y-4 leading-relaxed text-zinc-700 dark:text-zinc-300">
         <p>
-          AI Hub collects no personal data by default. There are no accounts, no comments, no
+          The Wider Lens collects no personal data by default. There are no accounts, no comments, no
           bookmarks, and no analytics beacons in the application code.
         </p>
         <p>
@@ -28,7 +28,7 @@ export default function PrivacyPage() {
         </p>
         <p>
           Outbound links open original publishers (news sites, arXiv, GitHub, Hugging Face) in a new
-          tab — those sites have their own privacy policies. If you deploy AI Hub with a hosting
+          tab — those sites have their own privacy policies. If you deploy The Wider Lens with a hosting
           provider such as Vercel, that provider&apos;s standard request logging applies.
         </p>
       </div>

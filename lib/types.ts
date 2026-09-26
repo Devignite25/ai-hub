@@ -1,4 +1,4 @@
-// ─── AI Hub: normalized data model ───────────────────────────────────────────
+// ─── The Wider Lens: normalized data model ───────────────────────────────────────────
 // V1 operates with no database. All data comes from external public sources,
 // is normalized here, and is cached by Next.js/Vercel per fetch revalidate.
 

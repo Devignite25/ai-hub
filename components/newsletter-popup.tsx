@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const DISMISSED_KEY = "aihub-newsletter-popup-dismissed";
-const SUBSCRIBED_KEY = "aihub-newsletter-subscribed";
+const DISMISSED_KEY = "thewiderlens-newsletter-popup-dismissed";
+const SUBSCRIBED_KEY = "thewiderlens-newsletter-subscribed";
 const SUPPRESS_DAYS = 14;
 const DWELL_DELAY_MS = 40000; // 40s dwell before showing (when no exit intent)
 const RETRY_DELAY_MS = 15000; // wait this long if another popup is open
@@ -47,7 +47,7 @@ function markSubscribed() {
 
 /** True while another popup (e.g. the affiliate one) is on screen. */
 function anotherPopupOpen(): boolean {
-  return Boolean(document.body.dataset.aihubPopup);
+  return Boolean(document.body.dataset.thewiderlensPopup);
 }
 
 export function NewsletterPopup() {
@@ -100,12 +100,12 @@ export function NewsletterPopup() {
       if (e.key === "Escape") close();
     };
     document.addEventListener("keydown", onKey);
-    document.body.dataset.aihubPopup = "open";
+    document.body.dataset.thewiderlensPopup = "open";
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", onKey);
-      delete document.body.dataset.aihubPopup;
+      delete document.body.dataset.thewiderlensPopup;
       document.body.style.overflow = prev;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

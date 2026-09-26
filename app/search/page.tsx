@@ -8,7 +8,7 @@ export const revalidate = 900;
 
 export const metadata: Metadata = {
   title: "Search",
-  description: "Search AI Hub's current stories, models, research papers, and repositories.",
+  description: "Search The Wider Lens' current stories, models, research papers, and repositories.",
 };
 
 function matches(q: string, ...fields: (string | undefined)[]): boolean {
@@ -27,7 +27,7 @@ export default async function SearchPage({
   if (!query) {
     return (
       <div className="mx-auto max-w-xl">
-        <h1 className="text-3xl font-black tracking-tight">Search AI Hub</h1>
+        <h1 className="text-3xl font-black tracking-tight">Search The Wider Lens</h1>
         <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
           Search currently cached stories, models, papers, repositories, and learning topics.
         </p>
