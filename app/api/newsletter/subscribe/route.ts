@@ -57,6 +57,55 @@ export async function POST(req: Request) {
     );
   }
 
+  // If the contact already exists, handle it directly instead of
+  // re-creating it: Resend's create upserts, which would flip a
+  // confirmed subscriber back to pending. (The 409 branch below stays
+  // as a safety net for a race between the lookup and the create.)
+  try {
+    const { data: existing } = await resend.contacts.get(email);
+    const contactId = (existing as { id?: string } | null)?.id;
+    if (contactId) {
+      const subscribed =
+        (existing as { unsubscribed?: boolean } | null)?.unsubscribed === false;
+      if (subscribed) {
+        return NextResponse.json({
+          ok: true,
+          already: true,
+          message: "You're already subscribed — see you Monday.",
+        });
+      }
+      // Pending confirmation (e.g. the first email was lost): send a
+      // fresh confirmation email instead of stranding them.
+      const token = signToken({ c: contactId });
+      const confirmUrl = `${SITE_URL}/api/newsletter/confirm?token=${token}`;
+      const mail = buildConfirmEmail(confirmUrl);
+      const { error: resendError } = await resend.emails.send({
+        from: NEWSLETTER_FROM,
+        to: email,
+        subject: mail.subject,
+        html: mail.html,
+        text: mail.text,
+      });
+      if (!resendError) {
+        return NextResponse.json({
+          ok: true,
+          already: true,
+          resent: true,
+          message:
+            "You're already on the list — we've re-sent the confirmation email. Check your inbox.",
+        });
+      }
+      return NextResponse.json({
+        ok: true,
+        already: true,
+        message:
+          "This email is already on the list — check your inbox for the confirmation email.",
+      });
+    }
+  } catch {
+    /* lookup failed (e.g. 404) — fall through to create */
+  }
+
   // Create as unsubscribed — the confirmation click flips it on.
   const { data, error } = await resend.contacts.create({
     email,
@@ -67,44 +116,6 @@ export async function POST(req: Request) {
     const msg = String((error as { message?: string }).message ?? "");
     const code = (error as { statusCode?: number }).statusCode;
     if (code === 409 || /already exists/i.test(msg)) {
-      // The contact exists. If they're stuck waiting on a lost confirmation
-      // email, re-send it with a fresh token instead of stranding them.
-      try {
-        const { data: contact } = await resend.contacts.get(email);
-        const contactId = (contact as { id?: string } | null)?.id;
-        const subscribed =
-          (contact as { unsubscribed?: boolean } | null)?.unsubscribed === false;
-        if (subscribed) {
-          return NextResponse.json({
-            ok: true,
-            already: true,
-            message: "You're already subscribed — see you Monday.",
-          });
-        }
-        if (contactId) {
-          const token = signToken({ c: contactId });
-          const confirmUrl = `${SITE_URL}/api/newsletter/confirm?token=${token}`;
-          const mail = buildConfirmEmail(confirmUrl);
-          const { error: resendError } = await resend.emails.send({
-            from: NEWSLETTER_FROM,
-            to: email,
-            subject: mail.subject,
-            html: mail.html,
-            text: mail.text,
-          });
-          if (!resendError) {
-            return NextResponse.json({
-              ok: true,
-              already: true,
-              resent: true,
-              message:
-                "You're already on the list — we've re-sent the confirmation email. Check your inbox.",
-            });
-          }
-        }
-      } catch {
-        /* fall through to the generic message */
-      }
       return NextResponse.json({
         ok: true,
         already: true,
