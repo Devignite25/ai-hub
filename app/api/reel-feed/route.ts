@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getTodayStories } from "@/lib/data";
+import { getStoriesForDays } from "@/lib/data";
 
 // Feed text comes from RSS/Atom sources that HTML-encode entities.
 // Decode them so downstream consumers (video cards, captions) get clean text.
@@ -16,19 +16,25 @@ function decodeHtml(s: string): string {
     .replace(/&amp;/g, "&");
 }
 
-// Machine-readable feed of the day's top AI stories, for the
-// @thewiderlensen Instagram pipeline. Only clusters corroborated by at
-// least two independent outlets are included, matching the pipeline's
-// two-outlet verification rule. Refreshes every 15 minutes (same as /latest).
+// Machine-readable feed of the top AI stories, for the
+// @thewiderlensen Instagram pipeline and the weekly newsletter.
+// Only clusters corroborated by at least two independent outlets are
+// included, matching the pipeline's two-outlet verification rule.
+// Refreshes every 15 minutes (same as /latest).
+//
+// Query params:
+//   days  — lookback window in days (default 1, max 30)
+//   limit — max stories returned (default 6, max 12)
 export const revalidate = 900;
 
-const MAX_STORIES = 6;
-
-export async function GET() {
-  const stories = await getTodayStories();
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const days = Math.min(Math.max(parseInt(searchParams.get("days") ?? "1", 10) || 1, 1), 30);
+  const limit = Math.min(Math.max(parseInt(searchParams.get("limit") ?? "6", 10) || 6, 1), 12);
+  const stories = await getStoriesForDays(days);
   const qualified = stories
     .filter((s) => s.sources.length >= 2)
-    .slice(0, MAX_STORIES)
+    .slice(0, limit)
     .map((s) => ({
       headline: decodeHtml(s.primary.title),
       summary: decodeHtml(s.primary.description),

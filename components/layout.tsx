@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CATEGORIES, type CategorySlug } from "@/lib/types";
 import { COMPANIES } from "@/lib/companies";
+import { NewsletterSignup } from "@/components/newsletter-signup";
 
 export function Header() {
   return (
@@ -57,6 +58,17 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
 export function Footer() {
   return (
     <footer className="mt-16 border-t border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950">
+      <div className="border-b border-zinc-200 dark:border-zinc-800">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-8 sm:px-6 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p className="font-bold">The Weekly Brief</p>
+            <p className="mt-1 max-w-md text-sm text-zinc-600 dark:text-zinc-400">
+              The week&apos;s biggest AI stories — verified, summarized, every Monday morning.
+            </p>
+          </div>
+          <NewsletterSignup />
+        </div>
+      </div>
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:grid-cols-4 sm:px-6">
         <div>
           <p className="font-bold">AI Hub</p>

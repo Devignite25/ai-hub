@@ -83,11 +83,16 @@ export async function getStories(): Promise<StoryCluster[]> {
   });
 }
 
+/** Stories from roughly the last N days. */
+export async function getStoriesForDays(days: number): Promise<StoryCluster[]> {
+  const stories = await getStories();
+  const cutoff = Date.now() - days * 24 * 3_600_000;
+  return stories.filter((s) => +new Date(s.publishedAt) >= cutoff);
+}
+
 /** Stories from roughly the last 24 hours. */
 export async function getTodayStories(): Promise<StoryCluster[]> {
-  const stories = await getStories();
-  const cutoff = Date.now() - 24 * 3_600_000;
-  return stories.filter((s) => +new Date(s.publishedAt) >= cutoff);
+  return getStoriesForDays(1);
 }
 
 export async function getModels(): Promise<AiModel[]> {
