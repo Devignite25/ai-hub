@@ -18,6 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/sources",
     "/methodology",
     "/about",
+    "/toolkit",
     "/privacy",
   ];
   const urls: MetadataRoute.Sitemap = staticRoutes.map((r) => ({
