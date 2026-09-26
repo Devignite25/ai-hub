@@ -1,6 +1,21 @@
 import { NextResponse } from "next/server";
 import { getTodayStories } from "@/lib/data";
 
+// Feed text comes from RSS/Atom sources that HTML-encode entities.
+// Decode them so downstream consumers (video cards, captions) get clean text.
+function decodeHtml(s: string): string {
+  return s
+    .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(parseInt(n, 10)))
+    .replace(/&#x([0-9a-fA-F]+);/g, (_, n) => String.fromCharCode(parseInt(n, 16)))
+    .replace(/&quot;/g, '"')
+    .replace(/&apos;/g, "'")
+    .replace(/&#0?39;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&");
+}
+
 // Machine-readable feed of the day's top AI stories, for the
 // @thewiderlensen Instagram pipeline. Only clusters corroborated by at
 // least two independent outlets are included, matching the pipeline's
@@ -15,8 +30,8 @@ export async function GET() {
     .filter((s) => s.sources.length >= 2)
     .slice(0, MAX_STORIES)
     .map((s) => ({
-      headline: s.primary.title,
-      summary: s.primary.description,
+      headline: decodeHtml(s.primary.title),
+      summary: decodeHtml(s.primary.description),
       category: s.category,
       companies: s.companies,
       publishedAt: s.publishedAt,
@@ -26,7 +41,7 @@ export async function GET() {
       sources: s.sources.map((a) => ({
         outlet: a.source,
         type: a.sourceType,
-        title: a.title,
+        title: decodeHtml(a.title),
         url: a.url,
       })),
     }));
