@@ -70,10 +70,14 @@ export function AffiliatePopup() {
       if (e.key === "Escape") close();
     };
     document.addEventListener("keydown", onKey);
+    // Signal to other popups (e.g. the newsletter one) that we're on screen
+    // so they don't stack on top of each other.
+    document.body.dataset.aihubPopup = "open";
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", onKey);
+      delete document.body.dataset.aihubPopup;
       document.body.style.overflow = prev;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

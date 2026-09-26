@@ -23,6 +23,12 @@ export function NewsletterSignup() {
       const body = await res.json();
       if (body.ok) {
         setStatus(body.already ? "already" : "done");
+        // Tell the newsletter popup never to show again for this browser.
+        try {
+          localStorage.setItem("aihub-newsletter-subscribed", "1");
+        } catch {
+          /* ignore */
+        }
         setMessage(
           body.already
             ? body.message

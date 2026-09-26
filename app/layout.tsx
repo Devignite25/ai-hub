@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header, Footer } from "@/components/layout";
 import { AffiliatePopup } from "@/components/affiliate-popup";
+import { NewsletterPopup } from "@/components/newsletter-popup";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://hackzgaming.com";
 const SITE_NAME = "AI Hub";
@@ -57,6 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6">{children}</main>
         <Footer />
         <AffiliatePopup />
+        <NewsletterPopup />
         <script dangerouslySetInnerHTML={{ __html: UI_SCRIPT }} />
       </body>
     </html>
