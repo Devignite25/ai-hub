@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header, Footer } from "@/components/layout";
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ai-hub.vercel.app";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://hackzgaming.com";
 const SITE_NAME = "AI Hub";
 
 export const metadata: Metadata = {
