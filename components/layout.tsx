@@ -2,6 +2,7 @@ import Link from "next/link";
 import { CATEGORIES, type CategorySlug } from "@/lib/types";
 import { COMPANIES } from "@/lib/companies";
 import { NewsletterSignup } from "@/components/newsletter-signup";
+import { ContactUsLink } from "@/components/contact-modal";
 
 export function Header() {
   return (
@@ -102,6 +103,7 @@ export function Footer() {
             <li><FooterLink href="/sources">Sources</FooterLink></li>
             <li><FooterLink href="/methodology">Methodology</FooterLink></li>
             <li><FooterLink href="/about">About</FooterLink></li>
+            <li><ContactUsLink /></li>
             <li><FooterLink href="/privacy">Privacy</FooterLink></li>
           </ul>
         </div>
