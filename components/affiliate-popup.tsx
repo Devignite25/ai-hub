@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { isMyTurn } from "@/lib/popup-turn";
 
 const AFFILIATE_URL = "https://try.elevenlabs.io/0108u1ziky63";
 const STORAGE_KEY = "thewiderlens-elevenlabs-popup-dismissed";
 const SUPPRESS_DAYS = 7;
-const SHOW_CHANCE = 0.65; // 65% of sessions see the popup
 const MIN_DELAY_MS = 8000;
 const MAX_DELAY_MS = 22000;
 
@@ -55,7 +55,7 @@ export function AffiliatePopup() {
 
   useEffect(() => {
     if (wasRecentlyDismissed()) return;
-    if (Math.random() > SHOW_CHANCE) return;
+    if (!isMyTurn("affiliate")) return; // one popup per visit (lib/popup-turn)
     const delay = MIN_DELAY_MS + Math.random() * (MAX_DELAY_MS - MIN_DELAY_MS);
     const timer = setTimeout(() => {
       setVariant(VARIANTS[Math.floor(Math.random() * VARIANTS.length)]);

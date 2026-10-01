@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { isMyTurn } from "@/lib/popup-turn";
 
 const DISMISSED_KEY = "thewiderlens-newsletter-popup-dismissed";
 const SUBSCRIBED_KEY = "thewiderlens-newsletter-subscribed";
@@ -62,6 +63,7 @@ export function NewsletterPopup() {
     // Never bother someone who subscribed, recently dismissed, or just confirmed.
     if (isSubscribed() || wasRecentlyDismissed()) return;
     if (window.location.pathname.startsWith("/newsletter")) return;
+    if (!isMyTurn("newsletter")) return; // one popup per visit (lib/popup-turn)
 
     const tryOpen = () => {
       if (firedRef.current) return;

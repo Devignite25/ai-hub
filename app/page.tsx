@@ -3,6 +3,7 @@ import { getStories, getTodayStories, getModels, getPapers, getRepos } from "@/l
 import { CATEGORIES } from "@/lib/types";
 import { StoryCard, ArticleCard, ModelCard, PaperCard, RepoCard, SectionHeader, EmptyState, ExternalNote } from "@/components/cards";
 import { CategoryChips, CompanyChips } from "@/components/layout";
+import { ClaraCard } from "@/components/clara-card";
 import { timeAgo } from "@/lib/format";
 
 export const revalidate = 900; // 15 min — breaking/current news window
@@ -85,6 +86,7 @@ export default async function HomePage() {
           ) : (
             <EmptyState message="No trending stories right now." />
           )}
+          <ClaraCard placement="home" />
         </section>
 
         {/* ── LATEST AI ─────────────────────────────────────────── */}

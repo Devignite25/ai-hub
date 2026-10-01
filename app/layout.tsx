@@ -3,6 +3,7 @@ import "./globals.css";
 import { Header, Footer } from "@/components/layout";
 import { AffiliatePopup } from "@/components/affiliate-popup";
 import { NewsletterPopup } from "@/components/newsletter-popup";
+import { ClaraPopup } from "@/components/clara-popup";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://thewiderlens.info";
 const SITE_NAME = "The Wider Lens";
@@ -59,6 +60,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <AffiliatePopup />
         <NewsletterPopup />
+        <ClaraPopup />
         <script dangerouslySetInnerHTML={{ __html: UI_SCRIPT }} />
       </body>
     </html>
