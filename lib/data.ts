@@ -3,7 +3,7 @@
 
 import { collectFeed } from "./collectors/rss";
 import { collectArxiv } from "./collectors/arxiv";
-import { collectRepos } from "./collectors/github";
+import { collectRepos, collectRepo } from "./collectors/github";
 import { collectModels, collectTrendingModels } from "./collectors/huggingface";
 import { enabledFeeds } from "./sources/registry";
 import { clusterArticles, rankClusters } from "./pipeline";
@@ -135,6 +135,18 @@ export async function getPapers(): Promise<ResearchPaper[]> {
       return await collectArxiv(30);
     } catch (e) {
       console.error(`[ai-hub] arxiv failed — ${String(e)}`);
+      return [];
+    }
+  });
+}
+
+/** Open-source projects made by The Wider Lens, shown apart from the ranked list. */
+export async function getOwnRepos(): Promise<Repo[]> {
+  return cached("own-repos", 1_800_000, async () => {
+    try {
+      return [await collectRepo("TheWiderLensInitiative/clara")];
+    } catch (e) {
+      console.error(`[ai-hub] github (own repos) failed — ${String(e)}`);
       return [];
     }
   });

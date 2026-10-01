@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { getRepos } from "@/lib/data";
+import { getRepos, getOwnRepos } from "@/lib/data";
 import { RepoCard, SectionHeader, EmptyState, ExternalNote } from "@/components/cards";
+import { OwnProjectCard } from "@/components/clara-card";
 
 export const revalidate = 1800; // 30 min — GitHub
 
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default async function OpenSourcePage() {
-  const repos = await getRepos();
+  const [repos, own] = await Promise.all([getRepos(), getOwnRepos()]);
   return (
     <div>
       <h1 className="text-3xl font-black tracking-tight">Open Source Watch</h1>
@@ -18,6 +19,19 @@ export default async function OpenSourcePage() {
         Notable AI repositories on GitHub. Star counts are current figures from the GitHub API —
         we never show invented growth statistics.
       </p>
+      {own.length > 0 && (
+        <section aria-labelledby="ours" className="mt-6">
+          <SectionHeader title="From The Wider Lens" />
+          <p className="-mt-2 mb-3 text-xs text-zinc-500 dark:text-zinc-400">
+            Our own open-source projects, shown separately: they aren&apos;t part of the ranking below.
+          </p>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {own.map((r) => (
+              <OwnProjectCard key={r.id} repo={r} />
+            ))}
+          </div>
+        </section>
+      )}
       <div className="mt-6">
         <SectionHeader title="Repositories" />
         {repos.length > 0 ? (

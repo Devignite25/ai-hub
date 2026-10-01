@@ -112,3 +112,13 @@ export async function collectRepos(perTopic = 6, releaseLimit = 12): Promise<Rep
   });
   return out;
 }
+
+/** One specific repository (e.g. our own projects), with its latest release. */
+export async function collectRepo(fullName: string): Promise<Repo> {
+  const item = await fetchJson<GhRepoJson>(`${API}/repos/${fullName}`, {
+    timeoutMs: 30000,
+    revalidate: REVALIDATE.github,
+    headers: headers(),
+  });
+  return toRepo(item, await latestRelease(fullName));
+}
