@@ -1,13 +1,13 @@
 /**
- * One popup per visit. The Clara, newsletter and affiliate popups take turns: the first time any of them asks, one is
+ * One popup per visit. The Clara and newsletter popups take turns: the first time any of them asks, one is
  * picked for this browser session (weighted, skipping any the reader recently dismissed or no longer needs) and only
  * that one may show. The pick is kept in sessionStorage, so it holds across pages of the same visit.
  */
 
-export type PopupName = "clara" | "newsletter" | "affiliate";
+export type PopupName = "clara" | "newsletter";
 
 // Share of visits each popup gets when all are eligible. Tune here.
-const WEIGHTS: Record<PopupName, number> = { clara: 40, newsletter: 35, affiliate: 25 };
+const WEIGHTS: Record<PopupName, number> = { clara: 50, newsletter: 50 };
 
 const TURN_KEY = "thewiderlens-popup-turn";
 const DAY = 24 * 3600 * 1000;
@@ -34,8 +34,6 @@ function eligible(name: PopupName): boolean {
       }
       if (window.location.pathname.startsWith("/newsletter")) return false;
       return !recently("thewiderlens-newsletter-popup-dismissed", 14);
-    case "affiliate":
-      return !recently("thewiderlens-elevenlabs-popup-dismissed", 7);
   }
 }
 

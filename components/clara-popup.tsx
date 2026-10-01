@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { isMyTurn } from "@/lib/popup-turn";
 
-const CLARA_URL = "https://clara.thewiderlens.info/?utm_source=thewiderlens&utm_medium=popup";
+const CLARA_URL = "https://clara.thewiderlens.info/beta?utm_source=thewiderlens&utm_medium=popup";
 const STORAGE_KEY = "thewiderlens-clara-popup-dismissed";
 const DELAY_MS = 25000;
 
@@ -72,16 +72,16 @@ export function ClaraPopup() {
           <h2 className="mt-3 text-xl font-bold leading-snug">Meet Clara, your private AI assistant</h2>
           <p className="mt-2 text-sm leading-relaxed text-zinc-400">
             She runs on your own PC, not in the cloud: research, reminders, files, a browser of her own, and hands-free
-            voice, all from an Android app. Free and open source.
+            voice, all from an Android app. Free and open source, and we're looking for beta testers.
           </p>
           <a
             href={CLARA_URL}
             onClick={markDismissed}
             className="mt-4 block rounded-xl bg-gradient-to-r from-sky-500 via-violet-500 to-fuchsia-500 px-4 py-3 text-center text-sm font-semibold text-white transition hover:opacity-90"
           >
-            Get Clara free
+            Join the beta
           </a>
-          <p className="mt-3 text-center text-[11px] text-zinc-500">Needs a Linux PC with an NVIDIA GPU (12 GB+).</p>
+          <p className="mt-3 text-center text-[11px] text-zinc-500">Testers need an Android phone. Running Clara needs a Linux PC with an NVIDIA GPU.</p>
         </div>
       </div>
     </div>

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Header, Footer } from "@/components/layout";
-import { AffiliatePopup } from "@/components/affiliate-popup";
 import { NewsletterPopup } from "@/components/newsletter-popup";
 import { ClaraPopup } from "@/components/clara-popup";
 
@@ -58,7 +57,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6">{children}</main>
         <Footer />
-        <AffiliatePopup />
         <NewsletterPopup />
         <ClaraPopup />
         <script dangerouslySetInnerHTML={{ __html: UI_SCRIPT }} />
